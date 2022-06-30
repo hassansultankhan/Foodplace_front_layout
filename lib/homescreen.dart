@@ -1,13 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:front_layout1/burgers_page.dart';
 import 'package:front_layout1/main_body.dart';
+import 'package:front_layout1/sandwiches_page.dart';
+import 'package:front_layout1/swipe.dart';
 import 'awesome_dialogue.dart';
 
-class homescreen extends StatelessWidget {
-  const homescreen({Key? key}) : super(key: key);
+class homescreen extends StatefulWidget {
+  const homescreen({ Key? key }) : super(key: key);
 
   @override
+  State<homescreen> createState() => _homescreenState();
+}
+
+class _homescreenState extends State<homescreen> {
+  var screens = [MainBody(), sandwiches(), burgers()];
+  int selecteditem =1;
+  @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       extendBodyBehindAppBar:
           true, // to make scaffold body extended behind appbar
@@ -38,11 +49,44 @@ class homescreen extends StatelessWidget {
               iconSize: 30,
             ),
           ]),
-      body: MainBody(),
-      bottomNavigationBar: BottomNavigationBar(items: <BottomNavigationBarItem>[
-        BottomNavigationBarItem(icon: Icon(Icons.shop), label: 'shop'),
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: 'home'),
+      body:
+      Swipe(),
+      //  screens[selecteditem], 
+
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Color(0xfffece20),
+        selectedItemColor: Colors.brown[800],
+        unselectedItemColor: Colors.brown,
+        selectedFontSize: 20,
+        
+        currentIndex: selecteditem,
+        onTap: (int i)=> bottomclick(i, context),
+        
+        items: <BottomNavigationBarItem>[
+        BottomNavigationBarItem(icon: Icon(Icons.food_bank), label: 'Pizzas'),
+        BottomNavigationBarItem(icon: Icon(Icons.food_bank), label: 'Sandwiches'),
+        BottomNavigationBarItem(icon: Icon(Icons.food_bank), label: 'Burgers'),
       ]),
     );
+  }
+
+  bottomclick(int index, BuildContext context){
+    setState(() {
+      selecteditem = index;
+    });
+    
+    if (index == 0)
+    {
+        // click("pizzas", "", context);
+    }
+    else if(index == 1)
+    {
+        
+    }
+    else if(index == 2)
+    {
+        // click("Burgers", "", context);
+    }
+
   }
 }

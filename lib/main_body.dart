@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:front_layout1/radio_button.dart';
 import 'package:front_layout1/text_input.dart';
-
 import 'awesome_dialogue.dart';
 
 class MainBody extends StatelessWidget {
